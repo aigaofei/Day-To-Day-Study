@@ -1,3 +1,6 @@
+import './css/aaaa.css'
+import './less/abcd.less'
+import './scss/bcd.scss'
 import obj from './abc.js'
 console.log(obj)
 console.log(obj.fn(1989))
