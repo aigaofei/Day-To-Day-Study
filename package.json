@@ -1,0 +1,25 @@
+{
+  "name": "vue",
+  "version": "1.0.0",
+  "description": "**[MDN官网http协议全部参考文档](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status)**\r **[Vue-cli脚手架及部署官网](https://cli.vuejs.org/zh/guide)**\r **[MDN-web开发文档html/css/js](https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/)**\r **[fetch请求的API文档](https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API)**\r 1. webpack--不用全局安装也能打包执行---需要先package.json\r     里配置-->build： webpack --config webpack.pub.config.js, \r     然后用npm run build 驱动运行即刻可\r 2. 因为npm 命令默认就会去 node_module.js文件里找，并运行，npm就是全局命令\r 3. webpack 如果不全局安装--也不在 package.json 里配置，则需要用命令 npx webpack --config webpack.pub.config.js 驱动文件执行\r 4. npx 就是驱动-webpack-的全局命令\r 5. webpack-dev-server 是携带自动更新-自动打开-内存中保存打包好的dist文件-修改端口-开发打包用压缩gzip格式-等功能\r 6. 重大问题提示：\r  - 1. webpack中使用webpack-dev-server工具时，运行总是会页面提示请求不成功404的问题，明显简单的打包和发请求不沾边\r  - 2. 解决问题：webpack安装的版本不配套--\r     \"webpack\": \"^4.43.0\",\r     \"webpack-cli\": \"^3.3.12\",\r     \"webpack-dev-server\": \"^3.11.0\"\r     这样才行，最新webpack需要升级一下配置--> 在package.json文件里\r     webpack-dev-server --open --config script/webpack.dev.js\r     改为webpack serve --open --config script/webpack.dev.js\r  - 3. 其次端口默认是用8080，package.json配置后也可改为其它，\r  - 4.  **[webpack4 地址](https://v4.webpack.docschina.org/concepts/)**\r  - 5. 如果用了html-webpack-plugin ,有在index.html里引用了bundle.js 文件，则会发生两次打包，和引用---------注意点\r  7. 总结：webpack-dev-server 会将bundle.js文件存在电脑硬盘一份---html-webpack-plugin 会将html页面在缓存中存一份，并自动引用bundle.js文件\r  8. webpack4 匹配到的插件版本号： \r ```js\r   \"devDependencies\": {\r      \"@babel/core\": \"^7.6.4\",\r      \"@babel/plugin-transform-runtime\": \"^7.13.10\",\r      \"@babel/preset-env\": \"^7.6.3\",\r      \"autoprefixer\": \"^9.6.5\",\r      \"babel-loader\": \"^8.2.2\",\r      \"css-loader\": \"^3.2.1\",\r      \"file-loader\": \"^4.2.0\",\r      \"html-webpack-plugin\": \"^3.2.0\",\r      \"html-withimg-loader\": \"^0.1.16\",\r      \"less\": \"^3.10.3\",\r      \"less-loader\": \"^5.0.0\",\r      \"node-sass\": 此项是可以被sass替代的，因为很难找到对应的版本号--所以可以这样\r      \"sass\"：\"^1.26.5\",  这里是按node是14.x.x的版本对应查找的插件\r      \"sass-loader\": \"^7.3.1\",\r      \"mini-css-extract-plugin\": \"^0.8.2\",\r      \"optimize-css-assets-webpack-plugin\": \"^5.0.3\",\r      \"postcss-loader\": \"^3.0.0\",\r      \"style-loader\": \"^1.0.2\",\r      \"uglifyjs-webpack-plugin\": \"^2.2.0\",\r      \"url-loader\": \"^2.2.0\",\r      \"webpack\": \"^4.41.6\",\r      \"webpack-cli\": \"^3.3.9\",\r      \"webpack-dev-server\": \"^3.8.2\"\r    },\r node 17\r “node-sass”: “^4.7.2”,\r “sass-loader”: “^7.3.1”,\r ---------------\r node 16.13.0\r “node-sass”: “^6.0.1”,\r “sass-loader”: “^10.2.0”,\r -----------------\r node 版本为：v14.19.0\r \"node-sass\": \"^4.14.1\"\r \"sass-loader\": \"^7.3.1\"\r ----------------\r 使用npm install sass-loader@8.0.2 sass@1.26.5 --save-dev\r 用sass 代替 node-sass 可解决找不到对应的版本问题\r    \"dependencies\": {\r      \"@babel/polyfill\": \"^7.12.1\",\r      \"@babel/runtime\": \"^7.13.10\",\r      \"axios\": \"^0.19.2\",\r      \"vue\": \"^2.6.12\"\r    },\r    \"browserslist\": [\r      \" 1%\",\r      \"last 2 versions\"\r    ]\r  }\r ---------------------------\r  let path = require('path'),\r  HtmlWebpackPlugin = require('html-webpack-plugin'),\r  MiniCssExtractPlugin = require(\"mini-css-extract-plugin\"),\r  OptimizeCssAssetsWebpackPlugin = require(\"optimize-css-assets-webpack-plugin\"),\r  UglifyjsWebpackPlugin = require(\"uglifyjs-webpack-plugin\");",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "web": "webpack serve",
+    "dev": "node ./src/index.js",
+    "build": "npx webpack --config webpack.public.config.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.19.0",
+    "@babel/plugin-transform-runtime": "^7.18.10",
+    "@babel/preset-env": "^7.19.0",
+    "babel-loader": "^8.2.5",
+    "html-webpack-plugin": "^5.5.0",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.11.0"
+  }
+}
