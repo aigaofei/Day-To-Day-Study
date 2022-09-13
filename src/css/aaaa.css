@@ -1,3 +1,10 @@
+.webpackLearn {
+  width: 500px;
+  height: 400px;
+  background-color: rgb(93, 155, 241);
+  background-image: url('../img/a.jpg');
+  background-size: cover;
+}
 ul li {
   list-style: none;
   color: red;

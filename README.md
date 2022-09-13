@@ -13,7 +13,19 @@
 5. webpack-dev-server 是携带自动更新-自动打开-内存中保存打包好的dist文件-修改端口-开发打包用压缩gzip格式-等功能
 6. 重大问题提示： - 1. webpack中使用webpack-dev-server工具时，运行总是会页面提示请求不成功404的问题，明显简单的打包和发请求不沾边
 第一要检查安装了html-webpack-plugin吗？安了就可以 
-2. 解决问题：webpack安装的版本不配套  
+6-2. 解决问题：webpack安装的版本不配套  
+npm i source-map -S 作用【上线不用】在开发中将打包后的某些提示-直接指向开发文件中的具体地方
+7.浏览器跨域：开发时配置--（1）jsonp 方式：因为只能get请求，又是临时方法，非官方，（2）cors方法：是后端添加header头信息，【注意：有些公司始终不容许后端开启】只能用下（3）中的方法。----（3）http proxy方式：是webpack工具实现，开发调试阶段用--   （4）nginx代理实现
+8.打包上线时会使用：---是mode:production模式自带的优化
+tree shaking 打包的时候回自动移除js中未使用的代码
+scope hoisting 作用是推测模块间关系，散模合并成一个
+它们都是【依赖静态的es6的import、export】,不依赖动态【require、module.exports】
+UglifyjsPlugin  作用是压缩js代码
+9.postcss-loader 和 autoprefixer 两个同时安装和配置
+npm i --save-dev postcss-loader autoprefixer
+配置只要有两步：1 在css-loader 后添加 postcss-loader，
+2 根目录新建postcss.config.js，里面配置autoprefixer
+
 ```js
 \"webpack\": \"^4.43.0\",\r    
 \"webpack-cli\": \"^3.3.12\",\r     
@@ -410,3 +422,29 @@ awesome-typescript-loader
 
 ------------------
 
+// 关于安装@babel/polyfill 包时，提醒要更新core-js到3.23.3版本及以上，
+// 已弃用的core-js@2.6.12: core-js@<3.23.3不再维护，
+// 并且由于存在大量问题，不建议使用。由于V8发动机的突发事件，
+// 旧core-js版本中的功能检测可能会导致速度降低100倍，即使没有多填充。
+// 某些版本存在web兼容性问题。请将您的依赖项升级到core-js的实际版本。
+//百度搜索解决方案发现：https://zhuanlan.zhihu.com/p/452118687
+// 解决方法是可以将npm@8 的版本回退到@6版本---可解决【安装node@14.xx】,我这里练习项目
+// 不合适使用低node，所以没有回退
+// 而是使用安装 npm i core-js 和 core-js-compat 和 core-js-builder 代替
+// 详细作用参考文章：https://www.kancloud.cn/cyyspring/webpack/2147070
+// 使用案例
+// 1.现在想在'ie10' 中使用数组方法'includes' 因此需要使用'corejs'垫片功能，可以安装'npm install core-js' ，
+// 变可以发现数组的'includes' 在ie10的浏览器下也可以运行了
+// 2.'core-js' 导入几种形式：
+
+// // 导入所有新提案api
+// import "core-js";
+// // 唯一稳定的'core js'功能-es和web标准
+// import "core-js/stable";
+// // 仅支持稳定的ES功能
+// import "core-js/es";
+// // 只导入指定api
+// import "core-js/features/set";
+
+// import "core-js/stable/set";
+// import "core-js/es/set";

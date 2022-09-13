@@ -1,8 +1,9 @@
-ul {
-  li {
-    &:last-child {
-      background-color: aqua;
-      width: 100px;
+
+  ul {
+    li {
+      &:last-child {
+        background-color: aqua;
+        width: 100px;
+      }
     }
   }
-}

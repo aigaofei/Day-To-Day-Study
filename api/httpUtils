@@ -1,0 +1,11 @@
+import axios from 'axios'
+// 想要通过命令自动切换执行域名拼接
+// 本网域名---开发时用
+const host = 'http://192.168.100.102:8080'
+// 跨域域名：----上线时用
+if(!Develop_C) {  
+  //它要借用webpack的配置--webpack.develop.js或webpack.production.js文件参考
+  const host1 = 'http://www.baidu.com'
+}
+let urlPath = host + '/api/user/pet'
+export const petPath = () => axios.get(urlPath)
